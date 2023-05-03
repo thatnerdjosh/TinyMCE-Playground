@@ -19,11 +19,15 @@
                 'alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
             init_instance_callback: function (editor) {
-                editor.on('change', function (e) {
-                    document.getElementById("content").innerHTML = tinymce.activeEditor.getContent();
-                });
+                setInterval(() => {
+                    let editor = tinymce.activeEditor
+                    if(editor.isDirty) {
+                        document.getElementById("content").innerHTML = editor.getContent();
+                    }
+                }, 100);
             }
         });
+
     </script>
 
 </head>
